@@ -6,8 +6,10 @@
       <excludeFolder url="file://$MODULE_DIR$/api/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/api/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/api/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/app/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/shared/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/shared/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/shared/build" />
     </content>
