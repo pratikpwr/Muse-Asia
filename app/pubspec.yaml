@@ -13,11 +13,31 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  google_fonts: ^2.0.0
+  flutter_rating_bar: ^4.0.0
+
+  youtube_player_iframe: ^2.0.0
   vrouter: ^1.1.0+20
+
+  bloc: ^7.0.0
+  flutter_bloc: ^7.0.0
+
+  shared:
+    path: ../shared
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^1.1.7+1
+
+# flutter pub run flutter_native_splash:create
+flutter_native_splash:
+  image: assets/muse_asia_no_bg.png
+  color: "FFFFFF"
+  android_disable_fullscreen: true
+  android_gravity: center
+  ios_content_mode: center
+  web_image_mode: center
 
 flutter:
 

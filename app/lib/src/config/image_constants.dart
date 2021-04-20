@@ -6,5 +6,6 @@ class AllImages {
   factory AllImages() => _instance;
 
   String museTransparent = 'assets/muse.png';
+  String museAsiaNoBg = 'assets/muse_asia_no_bg.png';
   String museAsiaLogo = 'assets/muse_asia.jpg';
 }

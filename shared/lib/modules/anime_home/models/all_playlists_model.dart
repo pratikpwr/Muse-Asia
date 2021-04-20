@@ -178,7 +178,6 @@ class PageInfo {
         "title": "SEVEN KNIGHTS REVOLUTION -Hero Successor- [English Sub]",
         "description": "“Do what you want. ”\n\nThere were heroes who saved the world in the past. \nMany heroes fought the forces of “Destruction” and protected this world. \n\nThen, time goes by… \n\nThese heroes became history. \nThe boys and girls who inherited the power of these heroes are called \"Successors\".\nThey are now fighting for the world, the destiny of which is entrusted to them. \n\nOne of the Seven Knights, Faria, who is the top of successors,\nsaves a boy called Nemo while fighting against the invading army of “Destruction”.\n\nDuring the fierce battle, \nNemo awakens his power of “hero” and demonstrates his abilities as a “Successor” despite not realizing it. \n\nHowever, his “Hero”\nwas someone that nobody knows about or talks about. \n\nAnd that’s the moment when it starts. \nThe journey of soul, intertwining the past and the present…",
         "thumbnails": {
-
           "high": {
             "url": "https://i.ytimg.com/vi/r6E5l3v4vrU/hqdefault.jpg",
             "width": 480,
