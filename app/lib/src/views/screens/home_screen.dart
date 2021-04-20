@@ -1,25 +1,16 @@
-import 'package:app/src/config/color_constants.dart';
-import 'package:app/src/config/string_constants.dart';
-import 'package:app/src/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:app/src/config/color_constants.dart';
+import 'package:app/src/config/string_constants.dart';
+import 'package:app/src/views/views.dart';
 import 'package:shared/modules/anime_home/bloc/anime_home_bloc.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    BlocProvider.of<AnimeHomeBloc>(context).add(AnimeRequested());
-    super.initState();
-  }
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AnimeHomeBloc>(context).add(AnimeRequested());
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
@@ -39,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 8,
             ),
-            sectionHeadingText('Recent Releases'),
+            // sectionHeadingText('Recent Releases'),
             // Container(
             //     height: size.height * 0.4,
             //     child: ListView.builder(

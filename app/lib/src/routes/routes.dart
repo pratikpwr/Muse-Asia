@@ -3,7 +3,7 @@ import 'package:vrouter/vrouter.dart';
 
 List<VRouteElement> routes = [
   VWidget(path: '/', widget: HomeScreen()),
-  VWidget(path: '/anime', widget: AnimeScreen()),
+  VWidget(path: '/anime/:id', widget: AnimeScreen()),
   VWidget(path: '/player', widget: PlayerScreen()),
   VRouteRedirector(
     // This matches any path

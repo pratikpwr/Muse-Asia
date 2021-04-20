@@ -45,7 +45,7 @@ class EpisodeShort {
         id: json["id"],
         title: json["title"],
         imageUrl: json["imageUrl"],
-        episodeNo: int.parse(json["episodeNo"]),
+        episodeNo: json["episodeNo"],
         subtitle: json["subtitle"],
       );
 }
