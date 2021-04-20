@@ -4,7 +4,7 @@ import 'package:app/src/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared/modules/anime/bloc/anime_bloc.dart';
+import 'package:shared/modules/anime_home/bloc/anime_home_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    BlocProvider.of<AnimeBloc>(context).add(GetAnimeEvent());
+    BlocProvider.of<AnimeHomeBloc>(context).add(AnimeRequested());
     super.initState();
   }
 
@@ -40,22 +40,21 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 8,
             ),
             sectionHeadingText('Recent Releases'),
-            Container(
-                height: size.height * 0.4,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
-                  itemCount: 8,
-                  itemBuilder: (context, index) {
-                    return EpisodeWidget();
-                  },
-                )),
-
+            // Container(
+            //     height: size.height * 0.4,
+            //     child: ListView.builder(
+            //       shrinkWrap: true,
+            //       scrollDirection: Axis.horizontal,
+            //       physics: BouncingScrollPhysics(),
+            //       itemCount: 8,
+            //       itemBuilder: (context, index) {
+            //         return EpisodeWidget();
+            //       },
+            //     )),
             sectionHeadingText('All Anime'),
-            BlocBuilder<AnimeBloc, AnimeState>(
+            BlocBuilder<AnimeHomeBloc, AnimeHomeState>(
               builder: (context, state) {
-                if (state is AnimeLoadingState) {
+                if (state is AnimeLoading) {
                   return Container(
                     height: size.height,
                     width: size.width,
@@ -64,12 +63,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 }
-                if (state is AnimeSuccessState) {
+                if (state is AnimeLoadSuccess) {
                   return _buildAnimeGrid(state);
                 }
-                if (state is AnimeFailureState) {
+                if (state is AnimeLoadFailure) {
                   return Center(
-                    child: Text(state.message.toString()),
+                    child: Text(state.error.toString()),
                   );
                 } else {
                   return Center(
@@ -84,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ));
   }
 
-  Widget _buildAnimeGrid(AnimeSuccessState state) {
+  Widget _buildAnimeGrid(AnimeLoadSuccess state) {
     return Container(
       margin: EdgeInsets.all(6),
       child: GridView.builder(
@@ -92,13 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, childAspectRatio: 9 / 16),
-          itemCount: state.anime.items.length,
+          itemCount: state.listOfAnime.length,
           itemBuilder: (context, index) {
-            return AnimeWidget(
-              title: state.anime.items[index].snippet.title,
-              rating: 3.5,
-              imageUrl: state.anime.items[index].snippet.thumbnails.high.url,
-            );
+            return AnimeWidget(state.listOfAnime[index]);
           }),
     );
   }

@@ -11,13 +11,13 @@ class AnimeHomeInitial extends AnimeHomeState {}
 
 class AnimeLoading extends AnimeHomeState {}
 
-class AnimeDataLoaded extends AnimeHomeState {
-  final AllAnime allAnime;
+class AnimeLoadSuccess extends AnimeHomeState {
+  final List<AnimeShort> listOfAnime;
 
-  AnimeDataLoaded(this.allAnime) : assert(allAnime != null);
+  AnimeLoadSuccess(this.listOfAnime) : assert(listOfAnime != null);
 
   @override
-  List<Object> get props => [allAnime];
+  List<Object> get props => [listOfAnime];
 }
 
 class AnimeLoadFailure extends AnimeHomeState {

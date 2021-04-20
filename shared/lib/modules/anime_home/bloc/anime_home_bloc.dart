@@ -31,7 +31,7 @@ class AnimeHomeBloc extends Bloc<AnimeHomeEvent, AnimeHomeState> {
         }
 
         AllAnime allAnime = AllAnime.fromJson(response.data);
-        yield AnimeDataLoaded(allAnime);
+        yield AnimeLoadSuccess(allAnime.anime);
       } catch (err) {
         yield AnimeLoadFailure(error: err.toString());
       }
