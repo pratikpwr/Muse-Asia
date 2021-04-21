@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/modules/anime_details/bloc/anime_details_bloc.dart';
 import 'package:shared/modules/anime_home/bloc/anime_home_bloc.dart';
+import 'package:shared/modules/episode/bloc/episode_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:app/src/routes/routes.dart';
@@ -43,7 +44,8 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AnimeHomeBloc()),
-        BlocProvider(create: (context) => AnimeDetailsBloc())
+        BlocProvider(create: (context) => AnimeDetailsBloc()),
+        BlocProvider(create: (context) => EpisodeBloc())
       ],
       child: MaterialApp(
         title: APP_NAME,
@@ -54,3 +56,4 @@ class App extends StatelessWidget {
     );
   }
 }
+

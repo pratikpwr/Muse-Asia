@@ -15,7 +15,7 @@ class AnimeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.all(8),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       child: InkWell(
         onTap: () {
           // context.vRouter.push('/anime/${anime.id}');
@@ -29,10 +29,11 @@ class AnimeWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              anime.imageUrl,
-              height: size.height * 0.38,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                anime.imageUrl,
+              ),
             ),
             Container(
               padding: const EdgeInsets.only(left: 4, top: 4),
@@ -44,7 +45,10 @@ class AnimeWidget extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.montserrat(
-                        fontSize: 14, color: ColorConstants.primaryTextColor),
+                        fontSize: 14),
+                  ),
+                  SizedBox(
+                    height: 4,
                   ),
                   RatingBarIndicator(
                     rating: (anime.rating) / 2,

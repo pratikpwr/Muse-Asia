@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
               builder: (context, state) {
                 if (state is AnimeLoading) {
                   return Container(
-                    height: size.height,
+                    height: size.height*0.8,
                     width: size.width,
                     child: Center(
                       child: CircularProgressIndicator(),
@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 9 / 16),
+              crossAxisCount: 2, childAspectRatio: 9 / 15.7),
           itemCount: state.listOfAnime.length,
           itemBuilder: (context, index) {
             return AnimeWidget(state.listOfAnime[index]);
@@ -91,22 +91,17 @@ class HomeScreen extends StatelessWidget {
 
   Widget searchAnimeTextField() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: TextField(
         style: GoogleFonts.montserrat(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: ColorConstants.primaryTextColor),
+            fontSize: 14),
         decoration: InputDecoration(
             prefixIcon: Icon(
               Icons.search,
-              color: ColorConstants.primaryTextColor,
             ),
             hintText: 'Search Anime',
             hintStyle: GoogleFonts.montserrat(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: ColorConstants.primaryTextColor),
+                fontSize: 14),
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
         autofocus: false,
@@ -122,9 +117,8 @@ class HomeScreen extends StatelessWidget {
       child: Text(
         text,
         style: GoogleFonts.montserrat(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: ColorConstants.primaryTextColor),
+            fontSize: 16,
+            fontWeight: FontWeight.w500),
       ),
     );
   }

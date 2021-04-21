@@ -9,6 +9,10 @@ class ColorConstants {
   static Color primaryTextColor = const Color(0xff212121);
   static Color secondaryTextColor = const Color(0xff757575);
 
+  // dark theme
+  static Color primaryTextColorDarkTheme = Colors.white;
+  static Color secondaryTextColorDarkTheme = Colors.grey[100];
+
   // My Theme
   static Color primaryColor = const Color(0xfff7941d);
   static Color darkPrimaryColor = const Color(0xffF57C00);

@@ -84,6 +84,19 @@ class AnimeScreen extends StatelessWidget {
                   ],
                 ),
                 Positioned(
+                    top: 28,
+                    left: 12,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back_rounded,
+                        size: 28,
+                        color: ColorConstants.accentColor,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    )),
+                Positioned(
                   bottom: 0,
                   left: 0,
                   right: 0,
@@ -102,7 +115,7 @@ class AnimeScreen extends StatelessWidget {
                 state.anime.title,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.montserrat(
-                    fontSize: 20, fontWeight: FontWeight.w500),
+                    fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ),
             RatingBarIndicator(
@@ -115,17 +128,16 @@ class AnimeScreen extends StatelessWidget {
               itemSize: 26.0,
               direction: Axis.horizontal,
             ),
-            _playButton(),
+            _playButton(context, state.episodes[0].id),
             _sectionHeadingText('About'),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               alignment: Alignment.centerLeft,
               child: Text(
                 state.anime.description,
-                maxLines: 6,
+                maxLines: 16,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.montserrat(
-                    fontSize: 16, color: ColorConstants.primaryTextColor),
+                style: GoogleFonts.montserrat(fontSize: 14),
               ),
             ),
             _sectionHeadingText('Episodes (English Sub)'),
@@ -138,7 +150,7 @@ class AnimeScreen extends StatelessWidget {
     );
   }
 
-  Widget _playButton() {
+  Widget _playButton(context, episodeId) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 26, vertical: 12),
       margin: EdgeInsets.all(12),
@@ -146,22 +158,27 @@ class AnimeScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: ColorConstants.accentColor),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (ctx) => PlayerScreen(episodeId: episodeId)));
+        },
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               Icons.play_arrow_rounded,
-              size: 26,
+              size: 32,
               color: Colors.white,
             ),
             SizedBox(
-              width: 8,
+              width: 10,
             ),
             Text(
               'Play',
               style: GoogleFonts.montserrat(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: Colors.white),
             )
@@ -177,17 +194,15 @@ class AnimeScreen extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Text(
         text,
-        style: GoogleFonts.montserrat(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            color: ColorConstants.primaryTextColor),
+        style:
+            GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.w500),
       ),
     );
   }
 
   Widget _episodeSubList(Size size, AnimeLoadSuccess state) {
     return Container(
-      height: size.height * 0.47,
+      height: size.height * 0.36,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -208,7 +223,7 @@ class AnimeScreen extends StatelessWidget {
 
   Widget _episodeList(Size size, AnimeLoadSuccess state) {
     return Container(
-      height: size.height * 0.47,
+      height: size.height * 0.36,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,

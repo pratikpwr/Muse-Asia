@@ -54,7 +54,7 @@ class Episode {
         imageUrl: json["imageUrl"],
         description: json["description"],
         releaseDate: DateTime.parse(json["releaseDate"]),
-        episodeNo: int.parse(json["episodeNo"]),
+        episodeNo: json["episodeNo"],
         videoId: json["videoId"],
         anime: json["anime"],
         sub: json["sub"]
