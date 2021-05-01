@@ -17,7 +17,8 @@ dependencies:
   flutter_rating_bar: ^4.0.0
 
   youtube_player_iframe: ^2.0.0
-  vrouter: ^1.1.0+20
+  youtube_player_flutter: ^8.0.0
+  vrouter: ^1.1.0+22
 
   bloc: ^7.0.0
   flutter_bloc: ^7.0.0
@@ -28,7 +29,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^1.1.7+1
+  flutter_native_splash: ^1.1.8+4
 
 # flutter pub run flutter_native_splash:create
 flutter_native_splash:

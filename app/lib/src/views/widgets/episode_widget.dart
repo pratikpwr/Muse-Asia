@@ -1,6 +1,8 @@
 import 'package:app/src/config/color_constants.dart';
 import 'package:app/src/config/image_constants.dart';
 import 'package:app/src/views/screens/player_screen.dart';
+import 'package:app/src/views/screens/youtube_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared/modules/anime_details/models/anime_episodes.dart';
@@ -18,10 +20,17 @@ class EpisodeWidget extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(12, 8, 0, 8),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (ctx) => PlayerScreen(episodeId: episode.id)));
+          if (kIsWeb) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (ctx) => PlayerScreen(episodeId: episode.id)));
+          } else {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (ctx) => YoutubeScreen(episodeId: episode.id)));
+          }
         },
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.start,

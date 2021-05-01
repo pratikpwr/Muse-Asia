@@ -4,18 +4,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared/modules/episode/bloc/episode_bloc.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class PlayerScreen extends StatefulWidget {
+class YoutubeScreen extends StatefulWidget {
   final String episodeId;
 
-  PlayerScreen({@required this.episodeId});
+  YoutubeScreen({@required this.episodeId});
 
   @override
-  _PlayerScreenState createState() => _PlayerScreenState();
+  _YoutubeScreenState createState() => _YoutubeScreenState();
 }
 
-class _PlayerScreenState extends State<PlayerScreen> {
+class _YoutubeScreenState extends State<YoutubeScreen> {
   @override
   void dispose() {
     // controller.dispose();
@@ -59,13 +59,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   Widget _animePlayer(BuildContext context, EpisodeLoadSuccess state) {
     // ignore: close_sinks
-    YoutubePlayerController controller = YoutubePlayerController(
+
+    YoutubePlayerController _controller = YoutubePlayerController(
       initialVideoId: state.episode.videoId,
-      params: YoutubePlayerParams(
-        playlist: [state.episode.videoId], // Defining custom playlist
-        startAt: Duration(seconds: 30),
-        showControls: true,
-        showFullscreenButton: true,
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+        mute: true,
       ),
     );
 
@@ -75,9 +74,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
         child: Container(
           child: Column(
             children: [
-              YoutubePlayerIFrame(
-                controller: controller,
-                aspectRatio: 16 / 9,
+              YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: true,
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),

@@ -4,6 +4,31 @@ import 'package:flutter/material.dart';
 import 'api_constants.dart';
 
 class ApiSdk {
+  // sign up
+  static Future<Response> signUp(
+      {String userName, String email, String password}) async {
+    String path = '${ApiConstants.serverUrl}/auth/signUp';
+
+    Map<String, dynamic> body = {
+      'name': userName,
+      'email': email,
+      'password': password
+    };
+
+    Response response = await RestApiHandlerData.postData(path, body);
+    return response;
+  }
+
+  // sign in
+  static Future<Response> signIn({String email, String password}) async {
+    String path = '${ApiConstants.serverUrl}/auth/signIn';
+
+    Map<String, dynamic> body = {'email': email, 'password': password};
+
+    Response response = await RestApiHandlerData.putData(path, body);
+    return response;
+  }
+
   // get all anime
   static Future<Response> getAllAnime() async {
     String url = '${ApiConstants.serverUrl}/anime';
@@ -33,7 +58,7 @@ class ApiSdk {
   }
 
   // get recent episodes
-  static Future<Response> recentEpisodes() async {
+  static Future<Response> getRecentEpisodes() async {
     String url = '${ApiConstants.serverUrl}/episode/recent';
     Response response = await RestApiHandlerData.getData(url);
     return response;
@@ -74,13 +99,13 @@ class ApiSdk {
   // Edit anime
   static Future<Response> editAnime(
       {String animeId,
-        String title,
-        String japTitle,
-        String imageUrl,
-        String description,
-        double rating,
-        String playlistId,
-        String japPlaylistId}) async {
+      String title,
+      String japTitle,
+      String imageUrl,
+      String description,
+      double rating,
+      String playlistId,
+      String japPlaylistId}) async {
     String path = '${ApiConstants.serverUrl}/anime/$animeId';
 
     Map<String, dynamic> body = {

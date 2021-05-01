@@ -135,8 +135,8 @@ class AnimeScreen extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 state.anime.description,
-                maxLines: 16,
-                overflow: TextOverflow.ellipsis,
+                // maxLines: 16,
+                // overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.montserrat(fontSize: 14),
               ),
             ),

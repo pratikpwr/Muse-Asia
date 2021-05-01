@@ -42,12 +42,12 @@ class HomeScreen extends StatelessWidget {
             //         return EpisodeWidget();
             //       },
             //     )),
-            sectionHeadingText('All Anime'),
+
             BlocBuilder<AnimeHomeBloc, AnimeHomeState>(
               builder: (context, state) {
                 if (state is AnimeLoading) {
                   return Container(
-                    height: size.height*0.8,
+                    height: size.height * 0.8,
                     width: size.width,
                     child: Center(
                       child: CircularProgressIndicator(),
@@ -55,7 +55,28 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
                 if (state is AnimeLoadSuccess) {
-                  return _buildAnimeGrid(state);
+                  return Column(
+                    children: [
+                      sectionHeadingText('Recent Releases'),
+                      Container(
+                          height: size.height * 0.37,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: 8,
+                            itemBuilder: (context, index) {
+                              return EpisodeWidget(
+                                episode: state.recentEpisodes[index],
+                                animeImageUrl:
+                                    state.recentEpisodes[index].imageUrl,
+                              );
+                            },
+                          )),
+                      sectionHeadingText('All Anime'),
+                      _buildAnimeGrid(size, state),
+                    ],
+                  );
                 }
                 if (state is AnimeLoadFailure) {
                   return Center(
@@ -74,14 +95,15 @@ class HomeScreen extends StatelessWidget {
     ));
   }
 
-  Widget _buildAnimeGrid(AnimeLoadSuccess state) {
+  Widget _buildAnimeGrid(Size size, AnimeLoadSuccess state) {
     return Container(
       margin: EdgeInsets.all(6),
       child: GridView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 9 / 15.7),
+              crossAxisCount: size.width > 1100 ? 6 : 2,
+              childAspectRatio: 9 / 15.7),
           itemCount: state.listOfAnime.length,
           itemBuilder: (context, index) {
             return AnimeWidget(state.listOfAnime[index]);
@@ -93,15 +115,13 @@ class HomeScreen extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: TextField(
-        style: GoogleFonts.montserrat(
-            fontSize: 14),
+        style: GoogleFonts.montserrat(fontSize: 14),
         decoration: InputDecoration(
             prefixIcon: Icon(
               Icons.search,
             ),
             hintText: 'Search Anime',
-            hintStyle: GoogleFonts.montserrat(
-                fontSize: 14),
+            hintStyle: GoogleFonts.montserrat(fontSize: 14),
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
         autofocus: false,
@@ -116,9 +136,8 @@ class HomeScreen extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Text(
         text,
-        style: GoogleFonts.montserrat(
-            fontSize: 16,
-            fontWeight: FontWeight.w500),
+        style:
+            GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.w500),
       ),
     );
   }
