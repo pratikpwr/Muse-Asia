@@ -20,6 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
     if (event is SignUpEvent) {
       yield AuthLoading();
       try {
@@ -29,17 +30,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: event.password);
 
         if (signUpResponse.statusCode != 200) {
+          final authErr = AuthErrorModel.fromJson(signUpResponse.data);
           yield AuthFailure(
-              message: signUpResponse.data['data']['msg'],
+              error: authErr.data[0].msg ?? authErr.data[1].msg,
               statusCode: signUpResponse.statusCode);
         }
 
         final authData = AuthModel.fromJson(signUpResponse.data);
-        SharedPreferences _prefs = await SharedPreferences.getInstance();
         _prefs.setString('Token', authData.token);
+        _prefs.setBool('LoggedIn', true);
         yield AuthSuccess(auth: authData);
       } catch (err) {
-        yield AuthFailure(message: err.toString());
+        // yield AuthFailure(error: err.toString());
       }
     }
     if (event is SignInEvent) {
@@ -49,17 +51,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             email: event.email, password: event.password);
 
         if (signInResponse.statusCode != 200) {
+          final authError = AuthErrorModel.fromJson(signInResponse.data);
           yield AuthFailure(
-              message: signInResponse.data['data']['msg'],
+              error: authError.data[0].msg,
               statusCode: signInResponse.statusCode);
         }
 
-        final authData = AuthModel.fromJson(signInResponse.data);
-        SharedPreferences _prefs = await SharedPreferences.getInstance();
-        _prefs.setString('Token', authData.token);
-        yield AuthSuccess(auth: authData);
+        final auth = AuthModel.fromJson(signInResponse.data);
+
+        _prefs.setString('Token', auth.token);
+        _prefs.setBool('LoggedIn', true);
+        yield AuthSuccess(auth: auth);
       } catch (err) {
-        yield AuthFailure(message: err.toString());
+        yield AuthFailure(error: err.toString());
       }
     }
   }

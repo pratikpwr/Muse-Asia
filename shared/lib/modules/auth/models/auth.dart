@@ -6,8 +6,6 @@ import 'dart:convert';
 
 AuthModel authModelFromJson(String str) => AuthModel.fromJson(json.decode(str));
 
-String authModelToJson(AuthModel data) => json.encode(data.toJson());
-
 class AuthModel {
   AuthModel({
     this.message,
@@ -20,16 +18,10 @@ class AuthModel {
   User user;
 
   factory AuthModel.fromJson(Map<String, dynamic> json) => AuthModel(
-    message: json["message"],
-    token: json["token"],
-    user: User.fromJson(json["user"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "message": message,
-    "token": token,
-    "user": user.toJson(),
-  };
+        message: json["message"],
+        token: json["token"],
+        user: User.fromJson(json["user"]),
+      );
 }
 
 class User {
@@ -44,14 +36,47 @@ class User {
   String email;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    id: json["id"],
-    name: json["name"],
-    email: json["email"],
-  );
+        id: json["id"],
+        name: json["name"],
+        email: json["email"],
+      );
+}
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "email": email,
-  };
+class AuthErrorModel {
+  AuthErrorModel({
+    this.statusCode,
+    this.message,
+    this.data,
+  });
+
+  int statusCode;
+  String message;
+  List<Datum> data;
+
+  factory AuthErrorModel.fromJson(Map<String, dynamic> json) => AuthErrorModel(
+    statusCode: json["statusCode"],
+    message: json["message"],
+    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+  );
+}
+
+class Datum {
+  Datum({
+    this.value,
+    this.msg,
+    this.param,
+    this.location,
+  });
+
+  String value;
+  String msg;
+  String param;
+  String location;
+
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    value: json["value"],
+    msg: json["msg"],
+    param: json["param"],
+    location: json["location"],
+  );
 }

@@ -38,7 +38,17 @@ class ApiBaseHelper {
     try {
       dio.options.headers['content-Type'] = 'application/json';
       dio.options.headers['Authorization'] = 'Bearer $token';
-      response = await dio.post(url, data: data);
+      response = await dio.post(
+        url,
+        data: data,
+        options: Options(
+          followRedirects: false,
+          validateStatus: (status) {
+            return status < 500;
+          },
+        ),
+      );
+      debugPrint(response.data.toString());
     } on SocketException {
       throw FetchDataException('No Internet connection.');
     }
@@ -46,7 +56,6 @@ class ApiBaseHelper {
   }
 
   Future<Response> put(String url, dynamic data) async {
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('Token') ?? "";
 
@@ -55,7 +64,17 @@ class ApiBaseHelper {
     try {
       dio.options.headers['content-Type'] = 'application/json';
       dio.options.headers['Authorization'] = 'Bearer $token';
-      response = await dio.put(url, data: data);
+      response = await dio.put(
+        url,
+        data: data,
+        options: Options(
+          followRedirects: false,
+          validateStatus: (status) {
+            return status < 500;
+          },
+        ),
+      );
+      debugPrint(response.data.toString());
     } on SocketException {
       throw FetchDataException('No Internet connection.');
     }
