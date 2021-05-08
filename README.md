@@ -39,20 +39,17 @@ This app contains the List of Anime Uploaded by [Muse Asia](https://www.youtube.
 ## Images
 
 
-<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/homelong.jpeg">
-<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/aboutlong.jpeg">
+<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/homelong.jpeg"> <img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/aboutlong.jpeg">
 
 <br/>
 <br/>
 
-<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/signin.jpeg" width="250" height="450">
-<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/signup.jpeg" width="250" height="450">
+<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/signin.jpeg" width="250" height="450"> <img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/signup.jpeg" width="250" height="450">
 
 <br/>
 <br/>
 
-<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/player.jpeg" width="250" height="450">
-<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/ytplayer.jpeg" width="250" height="450">
+<img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/player.jpeg" width="250" height="450"> <img src="https://github.com/pratikpwr/Muse-Asia/blob/master/ss/ytplayer.jpeg" width="250" height="450">
 
 <br/>
 <br/>
