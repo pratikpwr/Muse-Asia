@@ -55,9 +55,9 @@ class _AppState extends State<App> {
     super.initState();
   }
 
-  Future<void> getStatus() async {
+  void getStatus() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    isLoggedIn = _prefs.getBool('LoggedIn');
+    isLoggedIn = _prefs.getBool('LoggedIn') ?? false;
   }
 
   @override
@@ -73,8 +73,8 @@ class _AppState extends State<App> {
         title: APP_NAME,
         theme: ThemeConfig.lightTheme,
         debugShowCheckedModeBanner: false,
-        home: AuthScreen(),
-        // home: isLoggedIn ? HomeScreen() : AuthScreen(),
+        // home: AuthScreen(),
+        home: isLoggedIn ? HomeScreen() : AuthScreen(),
       ),
     );
   }

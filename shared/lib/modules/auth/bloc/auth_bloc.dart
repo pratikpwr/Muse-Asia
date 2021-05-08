@@ -39,6 +39,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final authData = AuthModel.fromJson(signUpResponse.data);
         _prefs.setString('Token', authData.token);
         _prefs.setBool('LoggedIn', true);
+        _prefs.setString('UserId', authData.user.id);
         yield AuthSuccess(auth: authData);
       } catch (err) {
         // yield AuthFailure(error: err.toString());
@@ -61,6 +62,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         _prefs.setString('Token', auth.token);
         _prefs.setBool('LoggedIn', true);
+        _prefs.setString('UserId', auth.user.id);
         yield AuthSuccess(auth: auth);
       } catch (err) {
         yield AuthFailure(error: err.toString());

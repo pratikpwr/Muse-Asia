@@ -33,6 +33,8 @@ class _AuthScreenState extends State<AuthScreen> {
     super.initState();
   }
 
+  //TODO : Sign Up Bug Solve
+
   void showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
